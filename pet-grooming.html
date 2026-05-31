@@ -78,15 +78,29 @@ section{padding:100px 30px}
 .gallery-item:hover{transform:scale(1.03)}
 .gallery-item img{width:100%;height:250px;object-fit:cover;display:block}
 .gallery-overlay{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.6));padding:20px;color:white;font-weight:600}
-.testimonials-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:25px}
-.testimonial-card{background:white;border-radius:20px;padding:30px;box-shadow:0 5px 25px rgba(0,0,0,.05);position:relative}
-.testimonial-card::before{content:'\201c';position:absolute;top:15px;right:25px;font-size:4rem;color:#fdebd0;font-family:serif;line-height:1}
-.testimonial-stars{color:#f4b400;font-size:1.1rem;margin-bottom:12px}
-.testimonial-text{color:#6b5a4a;font-size:.95rem;margin-bottom:15px}
-.testimonial-author{display:flex;align-items:center;gap:10px}
-.author-avatar{width:45px;height:45px;border-radius:50%;background:#fdebd0;display:flex;align-items:center;justify-content:center;font-size:1.3rem}
-.author-name{font-weight:700}
+/* ===== ?????? ===== */
+.testimonials-section{background:#fff}
+.testimonials-carousel{position:relative;max-width:960px;margin:0 auto;padding:0 50px}
+.testimonials-track{overflow:hidden;border-radius:20px}
+.testimonials-slides{display:flex;transition:transform .5s cubic-bezier(.4,0,.2,1)}
+.testimonial-slide{min-width:100%;display:flex;gap:25px;padding:10px}
+.testimonial-slide .testimonial-card{flex:1;background:white;border-radius:20px;padding:30px;box-shadow:0 5px 25px rgba(0,0,0,.05);position:relative;transition:transform .3s,box-shadow .3s;display:flex;flex-direction:column}
+.testimonial-slide .testimonial-card:hover{transform:translateY(-3px);box-shadow:0 12px 35px rgba(0,0,0,.08)}
+.testimonial-slide .testimonial-card::before{content:'\201c';position:absolute;top:15px;right:25px;font-size:4rem;color:#fdebd0;font-family:serif;line-height:1;pointer-events:none}
+.testimonial-stars{color:#f4b400;font-size:1.1rem;margin-bottom:12px;flex-shrink:0}
+.testimonial-text{color:#6b5a4a;font-size:.95rem;margin-bottom:15px;flex:1;line-height:1.7}
+.testimonial-author{display:flex;align-items:center;gap:10px;flex-shrink:0;padding-top:10px;border-top:1px solid #f5ede4}
+.author-avatar{width:45px;height:45px;border-radius:50%;background:#fdebd0;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+.author-name{font-weight:700;color:#4a3728}
 .author-pet{font-size:.8rem;color:#8b7355}
+.testi-arrow{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:white;border:2px solid #f0e4d8;color:#e07b4c;font-size:1.3rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s;box-shadow:0 4px 15px rgba(0,0,0,.08);z-index:2}
+.testi-arrow:hover{background:#e07b4c;color:white;border-color:#e07b4c;box-shadow:0 6px 20px rgba(224,123,76,.3)}
+.testi-arrow.prev{left:0}
+.testi-arrow.next{right:0}
+.testi-dots{display:flex;justify-content:center;gap:10px;margin-top:30px}
+.testi-dot{width:12px;height:12px;border-radius:50%;background:#e0d5c8;border:none;cursor:pointer;transition:all .3s;padding:0}
+.testi-dot.active{background:#e07b4c;width:32px;border-radius:6px}
+.testi-dot:hover{background:#e07b4c;opacity:.7}
 .contact-section{background:linear-gradient(135deg,#fffaf4,#fef3e4)}
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start}
 .contact-form{background:white;border-radius:20px;padding:40px;box-shadow:0 10px 40px rgba(0,0,0,.06)}
@@ -121,7 +135,8 @@ footer{background:#3e2d21;color:#c4a88c;padding:60px 30px 25px}
 .footer-social a{width:36px;height:36px;background:rgba(255,255,255,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;text-decoration:none;transition:background .3s;font-size:.9rem}
 .footer-social a:hover{background:#e07b4c}
 @media(max-width:768px){.nav-links{position:fixed;top:0;right:-100%;height:100vh;width:280px;background:white;flex-direction:column;padding:80px 30px;gap:20px;transition:right .3s;box-shadow:-5px 0 30px rgba(0,0,0,.1)}.nav-links.active{right:0}.hamburger{display:flex;z-index:1001}.about-grid,.contact-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr}section{padding:70px 20px}.hero h1{font-size:2rem}.pricing-row{grid-template-columns:1fr 1fr 1fr;padding:12px 15px;font-size:.85rem}.form-row{grid-template-columns:1fr}}
-@media(max-width:480px){.footer-grid{grid-template-columns:1fr}.services-grid,.testimonials-grid,.gallery-grid{grid-template-columns:1fr}.about-stats{grid-template-columns:1fr}}
+@media(max-width:768px){.testimonials-carousel{padding:0 40px}.testimonial-slide{flex-direction:column}.testi-arrow{width:36px;height:36px;font-size:1rem}}
+@media(max-width:480px){.footer-grid{grid-template-columns:1fr}.services-grid,.gallery-grid{grid-template-columns:1fr}.about-stats{grid-template-columns:1fr}.testimonials-carousel{padding:0 35px}.testimonial-slide .testimonial-card{padding:20px}}
 
 /* ===== 店内环境轮播 ===== */
 .env-section{background:#fff}
@@ -356,7 +371,17 @@ footer{background:#3e2d21;color:#c4a88c;padding:60px 30px 25px}
 </div>
 
 </div><div class="env-dots" id="envDots"><button class="env-dot active" onclick="goToSlide(0)" aria-label="第1张"></button><button class="env-dot" onclick="goToSlide(1)" aria-label="第2张"></button><button class="env-dot" onclick="goToSlide(2)" aria-label="第3张"></button></div></div></div></section><section id="gallery"><div class="container"><div class="section-header"><span class="section-tag">📸 作品展示</span><h2>毛孩子们的焕然一新</h2><p>每一张都是我们用心服务的见证</p></div><div class="gallery-grid"><div class="gallery-item"><img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=500&h=350&fit=crop&auto=format" alt="泰迪精致造型" loading="lazy"><div class="gallery-overlay">泰迪精致造型</div></div><div class="gallery-item"><img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=500&h=350&fit=crop&auto=format" alt="猫咪SPA护理" loading="lazy"><div class="gallery-overlay">猫咪SPA护理</div></div><div class="gallery-item"><img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=500&h=350&fit=crop&auto=format" alt="比熊精致美容" loading="lazy"><div class="gallery-overlay">比熊精致美容</div></div><div class="gallery-item"><img src="https://images.unsplash.com/photo-1552053831-71594a27632d?w=500&h=350&fit=crop&auto=format" alt="金毛深层清洁" loading="lazy"><div class="gallery-overlay">金毛深层清洁</div></div></div></div></section>
-<section id="testimonials"><div class="container"><div class="section-header"><span class="section-tag">💬 客户评价</span><h2>听听家长们怎么说</h2><p>来自毛孩子家长的真诚反馈</p></div><div class="testimonials-grid"><div class="testimonial-card"><div class="testimonial-stars">⭐⭐⭐⭐⭐</div><p class="testimonial-text">我家泰迪每次来都特别开心，美容师小姐姐超温柔！洗完回来毛特别滑，香味也能保持好久。已经推荐给所有养狗的朋友了～</p><div class="testimonial-author"><div class="author-avatar">🐕</div><div><div class="author-name">小美妈妈</div><div class="author-pet">泰迪 · 3岁</div></div></div></div><div class="testimonial-card"><div class="testimonial-stars">⭐⭐⭐⭐⭐</div><p class="testimonial-text">原来我家猫特别抗拒洗澡，来了这里之后居然不闹了！店员很有耐心，手法专业，用的小零食也很健康。强烈推荐猫咪家长！</p><div class="testimonial-author"><div class="author-avatar">🐱</div><div><div class="author-name">橘座大人</div><div class="author-pet">橘猫 · 2岁</div></div></div></div><div class="testimonial-card"><div class="testimonial-stars">⭐⭐⭐⭐⭐</div><p class="testimonial-text">接送服务太方便了！下班回家毛孩子已经在门口等我。Spa做完毛色亮了一个度，真心觉得物超所值。</p><div class="testimonial-author"><div class="author-avatar">🐩</div><div><div class="author-name">卷毛爸比</div><div class="author-pet">比熊 · 4岁</div></div></div></div></div></div></section>
+<section id="testimonials" class="testimonials-section"><div class="container"><div class="section-header"><span class="section-tag">💬 ????</span><h2>????????</h2><p>????????????</p></div><div class="testimonials-carousel"><button class="testi-arrow prev" onclick="moveTesti(-1)" aria-label="???">‹</button><div class="testimonials-track"><div class="testimonials-slides" id="testiSlides">
+
+<div class="testimonial-slide"><div class="testimonial-card"><div class="testimonial-stars">⭐⭐⭐⭐⭐</div><p class="testimonial-text">??????????????????????????????????????????????????????～</p><div class="testimonial-author"><div class="author-avatar">🐕</div><div><div class="author-name">????</div><div class="author-pet">?? · 3?</div></div></div></div><div class="testimonial-card"><div class="testimonial-stars">⭐⭐⭐⭐⭐</div><p class="testimonial-text">???????????????????????????????????????????????????????</p><div class="testimonial-author"><div class="author-avatar">🐱</div><div><div class="author-name">????</div><div class="author-pet">?? · 2?</div></div></div></div></div>
+
+<div class="testimonial-slide"><div class="testimonial-card"><div class="testimonial-stars">⭐⭐⭐⭐⭐</div><p class="testimonial-text">????????????????????????Spa????????????????????????????</p><div class="testimonial-author"><div class="author-avatar">🐩</div><div><div class="author-name">????</div><div class="author-pet">?? · 4?</div></div></div></div><div class="testimonial-card"><div class="testimonial-stars">⭐⭐⭐⭐⭐</div><p class="testimonial-text">????????????????????????????????????????????????????</p><div class="testimonial-author"><div class="author-avatar">🐺</div><div><div class="author-name">??????</div><div class="author-pet">??? · 2?</div></div></div></div></div>
+
+<div class="testimonial-slide"><div class="testimonial-card"><div class="testimonial-stars">⭐⭐⭐⭐⭐</div><p class="testimonial-text">?????????????????????????????????????????????????????</p><div class="testimonial-author"><div class="author-avatar">🐩</div><div><div class="author-name">???</div><div class="author-pet">?? · 5?</div></div></div></div><div class="testimonial-card"><div class="testimonial-stars">⭐⭐⭐⭐⭐</div><p class="testimonial-text">??????????????????????????????????????????????????</p><div class="testimonial-author"><div class="author-avatar">🐱</div><div><div class="author-name">???</div><div class="author-pet">??? · 1.5?</div></div></div></div></div>
+
+<div class="testimonial-slide"><div class="testimonial-card"><div class="testimonial-stars">⭐⭐⭐⭐⭐</div><p class="testimonial-text">???????????????????????????????????????????????????</p><div class="testimonial-author"><div class="author-avatar">🐕</div><div><div class="author-name">????</div><div class="author-pet">?? · 6?</div></div></div></div><div class="testimonial-card"><div class="testimonial-stars">⭐⭐⭐⭐⭐</div><p class="testimonial-text">???????????????????????????????????😂 ?????????????????</p><div class="testimonial-author"><div class="author-avatar">🐱</div><div><div class="author-name">????</div><div class="author-pet">?? · 3?</div></div></div></div></div>
+
+</div></div><button class="testi-arrow next" onclick="moveTesti(1)" aria-label="???">›</button><div class="testi-dots" id="testiDots"></div></div></div></section>
 <section id="contact" class="contact-section"><div class="container"><div class="section-header"><span class="section-tag">📋 在线预约</span><h2>为毛孩子预约一次舒适体验</h2><p>填写信息，我们会在30分钟内与您确认</p></div><div class="contact-grid"><div class="contact-form"><div class="form-row"><div class="form-group"><label>您的姓名</label><input type="text" placeholder="请输入姓名"></div><div class="form-group"><label>手机号码</label><input type="tel" placeholder="请输入手机号"></div></div><div class="form-row"><div class="form-group"><label>宠物类型</label><select><option>请选择</option><option>🐶 狗狗</option><option>🐱 猫咪</option><option>🐰 其他</option></select></div><div class="form-group"><label>服务项目</label><select><option>请选择</option><option>基础洗护</option><option>精致美容</option><option>SPA护理</option><option>口腔护理</option></select></div></div><div class="form-group"><label>期望日期</label><input type="date"></div><div class="form-group"><label>备注</label><textarea rows="3" placeholder="如有特殊要求请在此说明..."></textarea></div><button class="btn-submit">提交预约</button></div><div class="contact-info"><h3>📍 联系我们</h3><p>有任何问题欢迎随时咨询，我们期待为您和毛孩子服务！</p><div class="info-item"><div class="info-icon">📍</div><div><h4>门店地址</h4><span>上海市浦东新区毛茸茸路88号</span></div></div><div class="info-item"><div class="info-icon">📞</div><div><h4>联系电话</h4><span>021-8888-6666</span></div></div><div class="info-item"><div class="info-icon">📱</div><div><h4>微信客服</h4><span>maorongrong_pet</span></div></div><div class="hours-table"><h4 style="margin-bottom:10px">🕐 营业时间</h4><div class="hours-row"><span>周一至周五</span><span>09:00 - 20:00</span></div><div class="hours-row"><span>周六至周日</span><span>08:00 - 21:00</span></div><div class="hours-row"><span>法定节假日</span><span>正常营业</span></div></div></div></div></div></section>
 <footer><div class="footer-grid"><div class="footer-brand"><h3>🐾 毛茸茸宠物洗护馆</h3><p>成立于2018年，致力于为每一只宠物提供专业、温柔、贴心的洗护服务。我们相信，每一只毛孩子都值得最好的呵护。</p><div class="footer-social"><a href="#" title="微信">💬</a><a href="#" title="微博">📢</a><a href="#" title="小红书">📕</a><a href="#" title="抖音">🎵</a></div></div><div class="footer-col"><h4>快速导航</h4><ul><li><a href="#about">关于我们</a></li><li><a href="#services">服务项目</a></li><li><a href="#pricing">价目表</a></li><li><a href="#gallery">作品展示</a></li></ul></div><div class="footer-col"><h4>热门服务</h4><ul><li><a href="#">基础洗护</a></li><li><a href="#">精致美容</a></li><li><a href="#">SPA护理</a></li><li><a href="#">上门接送</a></li></ul></div><div class="footer-col"><h4>联系方式</h4><ul><li>📍 上海市浦东新区</li><li>📞 021-8888-6666</li><li>📧 hello@maorongrong.com</li><li>🕐 09:00 - 20:00</li></ul></div></div><div class="footer-bottom">&copy; 2024 毛茸茸宠物洗护馆 · 用心呵护每一只毛孩子 🐾</div></footer>
 <script>function toggleMenu(){document.getElementById('navLinks').classList.toggle('active')}function closeMenu(){document.getElementById('navLinks').classList.remove('active')}window.addEventListener('scroll',()=>{const n=document.querySelector('nav');n.style.boxShadow=window.scrollY>50?'0 2px 25px rgba(0,0,0,.1)':'0 2px 20px rgba(0,0,0,.06)'})
@@ -370,6 +395,20 @@ function updateCarousel(){envSlides.style.transform='translateX(-'+(envIndex*100
 let envTimer=setInterval(()=>moveSlide(1),4000)
 const carousel=document.getElementById('envCarousel')
 carousel.addEventListener('mouseenter',()=>clearInterval(envTimer))
-carousel.addEventListener('mouseleave',()=>{envTimer=setInterval(()=>moveSlide(1),4000)})</script>
+carousel.addEventListener('mouseleave',()=>{envTimer=setInterval(()=>moveSlide(1),4000)})
+
+/* ===== ?????? ===== */
+let testiIndex=0
+const testiSlides=document.getElementById('testiSlides')
+const totalTestiSlides=document.querySelectorAll('.testimonial-slide').length
+const dotsContainer=document.getElementById('testiDots')
+for(let i=0;i<totalTestiSlides;i++){const dot=document.createElement('button');dot.className='testi-dot'+(i===0?' active':'');dot.setAttribute('aria-label','第'+(i+1)+'张');dot.onclick=()=>goToTesti(i);dotsContainer.appendChild(dot)}
+function updateTestiCarousel(){testiSlides.style.transform='translateX(-'+(testiIndex*100)+'%)';document.querySelectorAll('.testi-dot').forEach((d,i)=>d.classList.toggle('active',i===testiIndex))}
+function moveTesti(dir){testiIndex=(testiIndex+dir+totalTestiSlides)%totalTestiSlides;updateTestiCarousel()}
+function goToTesti(n){testiIndex=n;updateTestiCarousel()}
+let testiTimer=setInterval(()=>moveTesti(1),5000)
+const testiCarousel=document.querySelector('.testimonials-carousel')
+testiCarousel.addEventListener('mouseenter',()=>clearInterval(testiTimer))
+testiCarousel.addEventListener('mouseleave',()=>{testiTimer=setInterval(()=>moveTesti(1),5000)})</script>
 </body>
 </html>
