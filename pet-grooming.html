@@ -1,0 +1,375 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>毛茸茸宠物洗护馆 - 给毛孩子最好的呵护</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:"Noto Sans SC",sans-serif;color:#4a3728;background:#fef9f4;line-height:1.6}
+nav{position:fixed;top:0;width:100%;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);z-index:1000;box-shadow:0 2px 20px rgba(0,0,0,.06)}
+.nav-container{max-width:1200px;margin:0 auto;padding:15px 30px;display:flex;justify-content:space-between;align-items:center}
+.logo{display:flex;align-items:center;gap:10px;font-size:1.5rem;font-weight:900;color:#e07b4c;text-decoration:none}
+.logo-icon{font-size:2rem}
+.nav-links{display:flex;list-style:none;gap:30px;align-items:center}
+.nav-links a{text-decoration:none;color:#4a3728;font-weight:500;transition:color .3s;font-size:.95rem}
+.nav-links a:hover{color:#e07b4c}
+.btn-book{background:linear-gradient(135deg,#e07b4c,#f0a06a);color:white!important;padding:10px 24px;border-radius:50px;font-weight:700!important;transition:transform .3s,box-shadow .3s}
+.btn-book:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(224,123,76,.4)}
+.hamburger{display:none;flex-direction:column;cursor:pointer;gap:5px}
+.hamburger span{width:25px;height:3px;background:#4a3728;border-radius:3px;transition:.3s}
+.hero{min-height:100vh;background:linear-gradient(135deg,#fdf2e9,#fadbd8 30%,#fdebd0 60%,#fef9f4);display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;top:-100px;right:-100px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(240,160,106,.3),transparent 70%)}
+.hero::after{content:"";position:absolute;bottom:-80px;left:-80px;width:350px;height:350px;border-radius:50%;background:radial-gradient(circle,rgba(250,219,216,.4),transparent 70%)}
+.hero-content{color:#4a3728;max-width:700px;padding:20px;z-index:1}
+.hero-badge{display:inline-block;background:rgba(224,123,76,.1);padding:8px 20px;border-radius:50px;font-size:.9rem;margin-bottom:20px;color:#e07b4c;font-weight:600}
+.hero h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:900;margin-bottom:15px;line-height:1.2}
+.hero h1 .accent{color:#e07b4c}
+.hero p{font-size:1.2rem;margin-bottom:35px;color:#8b7355}
+.hero-buttons{display:flex;gap:15px;justify-content:center;flex-wrap:wrap}
+.btn-primary{background:#e07b4c;color:white;padding:14px 35px;border-radius:50px;text-decoration:none;font-weight:700;font-size:1.05rem;transition:transform .3s,box-shadow .3s;box-shadow:0 8px 25px rgba(224,123,76,.3)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 35px rgba(224,123,76,.5)}
+.btn-outline{border:2px solid #e07b4c;color:#e07b4c;padding:14px 35px;border-radius:50px;text-decoration:none;font-weight:700;font-size:1.05rem;transition:all .3s}
+.btn-outline:hover{background:#e07b4c;color:white}
+.scroll-indicator{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);animation:bounce 2s infinite}
+.scroll-indicator span{display:block;width:30px;height:50px;border:2px solid rgba(224,123,76,.4);border-radius:20px;position:relative}
+.scroll-indicator span::after{content:"";position:absolute;top:8px;left:50%;transform:translateX(-50%);width:6px;height:12px;background:#e07b4c;border-radius:10px;animation:scrollDot 2s infinite}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(10px)}}
+@keyframes scrollDot{0%,100%{top:8px;opacity:1}50%{top:28px;opacity:.3}}
+section{padding:100px 30px}
+.section-header{text-align:center;margin-bottom:60px}
+.section-tag{display:inline-block;background:#fdebd0;color:#e07b4c;padding:6px 18px;border-radius:50px;font-size:.85rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:15px}
+.section-header h2{font-size:2.5rem;font-weight:900;color:#4a3728;margin-bottom:10px}
+.section-header p{color:#8b7355;font-size:1.1rem;max-width:550px;margin:0 auto}
+.container{max-width:1200px;margin:0 auto}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.about-image{position:relative}
+.about-image .main-img{width:100%;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.1)}
+.about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:25px}
+.stat-card{background:white;padding:20px;border-radius:15px;text-align:center;box-shadow:0 5px 20px rgba(0,0,0,.05)}
+.stat-number{font-size:2rem;font-weight:900;color:#e07b4c}
+.stat-label{font-size:.85rem;color:#8b7355;margin-top:5px}
+.about-text h3{font-size:1.8rem;font-weight:700;margin-bottom:15px}
+.about-text p{color:#6b5a4a;margin-bottom:15px;font-size:1rem}
+.about-features{list-style:none;margin-top:20px}
+.about-features li{display:flex;align-items:center;gap:10px;margin-bottom:12px;font-weight:500}
+.about-features li::before{content:"\01f43e";font-size:1.2rem}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px}
+.service-card{background:white;border-radius:20px;padding:35px 30px;text-align:center;transition:transform .3s,box-shadow .3s;box-shadow:0 5px 25px rgba(0,0,0,.05);position:relative;overflow:hidden}
+.service-card::before{content:"";position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,#e07b4c,#f0a06a);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.service-card:hover::before{transform:scaleX(1)}
+.service-card:hover{transform:translateY(-8px);box-shadow:0 15px 40px rgba(224,123,76,.15)}
+.service-icon{font-size:3.5rem;margin-bottom:20px}
+.service-card h3{font-size:1.3rem;margin-bottom:10px}
+.service-card p{color:#8b7355;font-size:.95rem;margin-bottom:18px}
+.service-price{font-size:1.5rem;font-weight:900;color:#e07b4c}
+.service-price span{font-size:.85rem;font-weight:400;color:#8b7355}
+.pricing-section{background:white}
+.pricing-table{max-width:900px;margin:0 auto;border-radius:20px;overflow:hidden;box-shadow:0 5px 30px rgba(0,0,0,.06)}
+.pricing-row{display:grid;grid-template-columns:2fr 1fr 1fr;padding:18px 30px;align-items:center;border-bottom:1px solid #f5ece4;transition:background .3s}
+.pricing-row:hover{background:#fef9f4}
+.pricing-row.header{background:linear-gradient(135deg,#e07b4c,#f0a06a);color:white;font-weight:700;border-bottom:none}
+.pricing-row.header:hover{background:linear-gradient(135deg,#e07b4c,#f0a06a)}
+.pricing-row:last-child{border-bottom:none}
+.price{font-weight:700;color:#e07b4c;text-align:center}
+.pet-weight{text-align:center;color:#8b7355}
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+.gallery-item{border-radius:15px;overflow:hidden;position:relative;cursor:pointer;box-shadow:0 5px 20px rgba(0,0,0,.08);transition:transform .3s}
+.gallery-item:hover{transform:scale(1.03)}
+.gallery-item img{width:100%;height:250px;object-fit:cover;display:block}
+.gallery-overlay{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.6));padding:20px;color:white;font-weight:600}
+.testimonials-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:25px}
+.testimonial-card{background:white;border-radius:20px;padding:30px;box-shadow:0 5px 25px rgba(0,0,0,.05);position:relative}
+.testimonial-card::before{content:'\201c';position:absolute;top:15px;right:25px;font-size:4rem;color:#fdebd0;font-family:serif;line-height:1}
+.testimonial-stars{color:#f4b400;font-size:1.1rem;margin-bottom:12px}
+.testimonial-text{color:#6b5a4a;font-size:.95rem;margin-bottom:15px}
+.testimonial-author{display:flex;align-items:center;gap:10px}
+.author-avatar{width:45px;height:45px;border-radius:50%;background:#fdebd0;display:flex;align-items:center;justify-content:center;font-size:1.3rem}
+.author-name{font-weight:700}
+.author-pet{font-size:.8rem;color:#8b7355}
+.contact-section{background:linear-gradient(135deg,#fffaf4,#fef3e4)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start}
+.contact-form{background:white;border-radius:20px;padding:40px;box-shadow:0 10px 40px rgba(0,0,0,.06)}
+.form-group{margin-bottom:20px}
+.form-group label{display:block;font-weight:600;margin-bottom:8px;color:#4a3728}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:12px 16px;border:2px solid #eee5da;border-radius:12px;font-family:inherit;font-size:.95rem;transition:border-color .3s;background:#fefaf5}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:#e07b4c}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.btn-submit{width:100%;background:linear-gradient(135deg,#e07b4c,#f0a06a);color:white;padding:15px;border:none;border-radius:50px;font-size:1.1rem;font-weight:700;cursor:pointer;transition:transform .3s,box-shadow .3s}
+.btn-submit:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(224,123,76,.4)}
+.contact-info{padding-top:20px}
+.contact-info h3{font-size:1.8rem;margin-bottom:20px}
+.contact-info>p{color:#6b5a4a;margin-bottom:25px}
+.info-item{display:flex;align-items:center;gap:15px;margin-bottom:20px}
+.info-icon{width:50px;height:50px;background:white;border-radius:15px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 5px 15px rgba(0,0,0,.05);flex-shrink:0}
+.info-item h4{font-size:.9rem;color:#8b7355;margin-bottom:3px}
+.info-item span{font-weight:600}
+.hours-table{margin-top:25px}
+.hours-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px dashed #eee5da}
+.hours-row:last-child{border-bottom:none}
+footer{background:#3e2d21;color:#c4a88c;padding:60px 30px 25px}
+.footer-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-brand h3{color:white;font-size:1.4rem;margin-bottom:15px}
+.footer-brand p{font-size:.9rem;line-height:1.7;opacity:.8}
+.footer-col h4{color:white;margin-bottom:15px;font-size:1rem}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:10px}
+.footer-col ul li a{color:#c4a88c;text-decoration:none;font-size:.9rem;transition:color .3s}
+.footer-col ul li a:hover{color:#e07b4c}
+.footer-bottom{max-width:1200px;margin:0 auto;text-align:center;padding-top:25px;border-top:1px solid rgba(255,255,255,.1);font-size:.85rem;opacity:.7}
+.footer-social{display:flex;gap:15px;margin-top:15px}
+.footer-social a{width:36px;height:36px;background:rgba(255,255,255,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;text-decoration:none;transition:background .3s;font-size:.9rem}
+.footer-social a:hover{background:#e07b4c}
+@media(max-width:768px){.nav-links{position:fixed;top:0;right:-100%;height:100vh;width:280px;background:white;flex-direction:column;padding:80px 30px;gap:20px;transition:right .3s;box-shadow:-5px 0 30px rgba(0,0,0,.1)}.nav-links.active{right:0}.hamburger{display:flex;z-index:1001}.about-grid,.contact-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr}section{padding:70px 20px}.hero h1{font-size:2rem}.pricing-row{grid-template-columns:1fr 1fr 1fr;padding:12px 15px;font-size:.85rem}.form-row{grid-template-columns:1fr}}
+@media(max-width:480px){.footer-grid{grid-template-columns:1fr}.services-grid,.testimonials-grid,.gallery-grid{grid-template-columns:1fr}.about-stats{grid-template-columns:1fr}}
+
+/* ===== 店内环境轮播 ===== */
+.env-section{background:#fff}
+.env-carousel{position:relative;max-width:1000px;margin:0 auto;border-radius:20px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.1)}
+.env-slides{display:flex;transition:transform .5s cubic-bezier(.4,0,.2,1)}
+.env-slide{min-width:100%;position:relative}
+.env-slide img{width:100%;height:450px;object-fit:cover;display:block}
+.env-slide-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.7));padding:35px 25px 20px;color:white}
+.env-slide-caption h3{font-size:1.4rem;margin-bottom:6px}
+.env-slide-caption p{font-size:.9rem;opacity:.85}
+.env-arrow{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;background:rgba(255,255,255,.85);border:none;border-radius:50%;cursor:pointer;font-size:1.3rem;color:#4a3728;z-index:2;transition:all .3s;display:flex;align-items:center;justify-content:center;line-height:1}
+.env-arrow:hover{background:#fff;box-shadow:0 4px 15px rgba(0,0,0,.15)}
+.env-arrow.prev{left:15px}
+.env-arrow.next{right:15px}
+.env-dots{position:absolute;bottom:15px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:2}
+.env-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.5);border:none;cursor:pointer;transition:all .3s;padding:0}
+.env-dot.active{background:#fff;transform:scale(1.3)}
+@media(max-width:768px){.env-slide img{height:280px}.env-arrow{width:34px;height:34px;font-size:1rem}}</style>
+</head>
+<body>
+<nav><div class="nav-container"><a href="#" class="logo"><span class="logo-icon">🐾</span> 毛茸茸</a><ul class="nav-links" id="navLinks"><li><a href="#home" onclick="closeMenu()">首页</a></li><li><a href="#about" onclick="closeMenu()">关于我们</a></li><li><a href="#services" onclick="closeMenu()">服务项目</a></li><li><a href="#pricing" onclick="closeMenu()">价目表</a></li><li><a href="#gallery" onclick="closeMenu()">作品展示</a></li><li><a href="#contact" class="btn-book" onclick="closeMenu()">立即预约</a></li></ul><div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div></div></nav>
+<section class="hero" id="home"><div class="hero-content"><div class="hero-badge">☀️ 全城最受欢迎的宠物洗护馆</div><h1>给毛孩子<span class="accent">最温柔的</span>呵护</h1><p>专业宠物洗护 · 进口洗护产品 · 温柔对待每一只宝贝</p><div class="hero-buttons"><a href="#contact" class="btn-primary">立即预约</a><a href="#services" class="btn-outline">了解服务</a></div></div><div class="scroll-indicator"><span></span></div></section>
+<section id="about"><div class="container"><div class="section-header"><span class="section-tag">🐶 关于我们</span><h2>把每一只宠物都当成自己的毛孩子</h2><p>成立于2018年，我们致力于为每一只宠物提供最专业、最温暖的洗护体验</p></div><div class="about-grid"><div class="about-image"><svg viewBox="0 0 500 380" xmlns="http://www.w3.org/2000/svg" class="main-img"><rect width="500" height="380" rx="20" fill="#fdebd0"/><circle cx="200" cy="180" r="80" fill="#f0a06a" opacity="0.6"/><circle cx="280" cy="150" r="60" fill="#e07b4c" opacity="0.4"/><circle cx="160" cy="250" r="50" fill="#fadbd8"/><text x="250" y="340" text-anchor="middle" fill="#4a3728" font-size="14" font-weight="500">🏠 温馨的洗护环境 🏠</text></svg></div><div class="about-text"><h3>用心洗护每一只毛孩子</h3><p>在毛茸茸宠物洗护馆，我们深知每一只宠物都是家庭的重要成员。我们的美容师均持有专业宠物美容证书，拥有5年以上从业经验，用爱心和耐心为您的宠物提供舒适的服务。</p><p>我们采用进口天然有机洗护产品，无刺激、无添加，特别适合敏感肌肤的毛孩子。每一道工序都经过严格把控，确保安全、卫生、舒适。</p><ul class="about-features"><li>专业认证美容师团队</li><li>进口天然有机洗护产品</li><li>一宠一巾，严格消毒</li><li>舒适无笼寄养环境</li></ul><div class="about-stats"><div class="stat-card"><div class="stat-number">5000+</div><div class="stat-label">服务宠物</div></div><div class="stat-card"><div class="stat-number">98%</div><div class="stat-label">好评率</div></div><div class="stat-card"><div class="stat-number">6+</div><div class="stat-label">年从业经验</div></div></div></div></div></div></section>
+<section id="services"><div class="container"><div class="section-header"><span class="section-tag">✨ 服务项目</span><h2>全方位宠物洗护服务</h2><p>从基础清洁到精致美容，满足各种需求</p></div><div class="services-grid"><div class="service-card"><div class="service-icon">🛁</div><h3>基础洗护</h3><p>深层清洁、护毛素滋养、耳部清洁、指甲修剪、肛门腺清理</p><div class="service-price">¥128<span>起</span></div></div><div class="service-card"><div class="service-icon">✂️</div><h3>精致美容</h3><p>全身造型修剪、面部精修、足部护理、专业级洗护产品</p><div class="service-price">¥258<span>起</span></div></div><div class="service-card"><div class="service-icon">💆</div><h3>SPA护理</h3><p>碳酸温泉浴、死海泥护理、精油按摩、毛发深层修护</p><div class="service-price">¥388<span>起</span></div></div><div class="service-card"><div class="service-icon">🦷</div><h3>口腔护理</h3><p>超声波洁牙、牙结石清除、口腔消炎、清新喷雾护理</p><div class="service-price">¥168<span>起</span></div></div><div class="service-card"><div class="service-icon">🏠</div><h3>宠物寄养</h3><p>舒适独立空间、每日遛弯、定时喂食、视频连线看宝贝</p><div class="service-price">¥88<span>/天</span></div></div><div class="service-card"><div class="service-icon">🚗</div><h3>上门接送</h3><p>专车接送服务、安全航空箱、5公里内免费</p><div class="service-price">¥38<span>起</span></div></div></div></div></section>
+<section id="pricing" class="pricing-section"><div class="container"><div class="section-header"><span class="section-tag">💰 价目表</span><h2>透明定价 · 品质保障</h2><p>按宠物体重分级收费，绝无隐形消费</p></div><div class="pricing-table"><div class="pricing-row header"><div>服务项目</div><div class="pet-weight">适合体重</div><div class="price">价格</div></div><div class="pricing-row"><div>🐶 小型犬基础洗护</div><div class="pet-weight">&lt; 5kg</div><div class="price">¥128</div></div><div class="pricing-row"><div>🐶 中型犬基础洗护</div><div class="pet-weight">5-15kg</div><div class="price">¥168</div></div><div class="pricing-row"><div>🐶 大型犬基础洗护</div><div class="pet-weight">15-30kg</div><div class="price">¥228</div></div><div class="pricing-row"><div>🐶 超大型犬基础洗护</div><div class="pet-weight">&gt; 30kg</div><div class="price">¥298</div></div><div class="pricing-row"><div>🐱 猫咪基础洗护</div><div class="pet-weight">所有体重</div><div class="price">¥158</div></div><div class="pricing-row"><div>✂️ 精致美容造型</div><div class="pet-weight">额外加收</div><div class="price">+¥130起</div></div><div class="pricing-row"><div>💆 SPA深层护理</div><div class="pet-weight">额外加收</div><div class="price">+¥260起</div></div></div></div></section>
+<section class="env-section" id="environment"><div class="container"><div class="section-header"><span class="section-tag">🏠 店内环境</span><h2>温馨舒适 · 一尘不染</h2><p>每一个角落都为毛孩子精心设计</p></div><div class="env-carousel" id="envCarousel"><button class="env-arrow prev" onclick="moveSlide(-1)" aria-label="上一张">◀</button><button class="env-arrow next" onclick="moveSlide(1)" aria-label="下一张">▶</button><div class="env-slides" id="envSlides">
+
+<div class="env-slide">
+<svg viewBox="0 0 1000 560" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="width:100%;height:auto;display:block">
+  <defs>
+    <linearGradient id="bg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fdf6ee"/><stop offset="100%" stop-color="#f5e6d3"/></linearGradient>
+    <linearGradient id="wood1" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#8B6914"/><stop offset="50%" stop-color="#A0782C"/><stop offset="100%" stop-color="#7A5A10"/></linearGradient>
+    <linearGradient id="wood2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#D4A853"/><stop offset="100%" stop-color="#B8923A"/></linearGradient>
+    <radialGradient id="light1" cx="50%" cy="30%" r="60%"><stop offset="0%" stop-color="#fff8ec" stop-opacity="1"/><stop offset="100%" stop-color="#f5e6d3" stop-opacity="0"/></radialGradient>
+    <linearGradient id="marble" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#faf8f5"/><stop offset="50%" stop-color="#f0ece6"/><stop offset="100%" stop-color="#e8e4dc"/></linearGradient>
+  </defs>
+  <rect width="1000" height="560" fill="url(#bg1)"/>
+  <rect width="1000" height="560" fill="url(#light1)"/>
+  <!-- Floor -->
+  <rect x="0" y="380" width="1000" height="180" fill="#d4c5a9"/>
+  <line x1="0" y1="400" x2="1000" y2="400" stroke="#c4b599" stroke-width="1"/>
+  <line x1="0" y1="440" x2="1000" y2="440" stroke="#c4b599" stroke-width="0.5"/>
+  <!-- Back wall with decorative panel -->
+  <rect x="0" y="80" width="1000" height="300" fill="#faf5ed"/>
+  <rect x="600" y="100" width="350" height="260" rx="8" fill="#fdf2e4" stroke="#e8d5b8" stroke-width="1.5"/>
+  <line x1="620" y1="140" x2="930" y2="140" stroke="#e8d5b8" stroke-width="0.5"/>
+  <line x1="620" y1="220" x2="930" y2="220" stroke="#e8d5b8" stroke-width="0.5"/>
+  <!-- Brand logo on wall -->
+  <rect x="180" y="130" width="140" height="140" rx="70" fill="#e07b4c" opacity="0.15"/>
+  <text x="250" y="185" text-anchor="middle" font-size="40">🐾</text>
+  <text x="250" y="225" text-anchor="middle" font-size="14" fill="#8B6914" font-weight="600">毛茸茸</text>
+  <text x="250" y="245" text-anchor="middle" font-size="11" fill="#b8923a">PET SPA</text>
+  <!-- Reception counter -->
+  <rect x="80" y="310" width="380" height="100" rx="6" fill="url(#marble)" stroke="#ddd8cf" stroke-width="1"/>
+  <rect x="80" y="300" width="380" height="20" rx="6" fill="url(#wood1)"/>
+  <rect x="100" y="325" width="30" height="60" rx="3" fill="#e07b4c" opacity="0.12"/>
+  <!-- Computer on counter -->
+  <rect x="300" y="270" width="80" height="50" rx="4" fill="#3e2d21"/>
+  <rect x="305" y="273" width="70" height="40" rx="2" fill="#5a8fb5"/>
+  <!-- Small plant on counter -->
+  <rect x="150" y="270" width="30" height="35" rx="4" fill="#c9a87c"/>
+  <circle cx="165" cy="255" r="22" fill="#6b8c42"/>
+  <circle cx="155" cy="260" r="16" fill="#7a9e4f"/>
+  <circle cx="175" cy="258" r="15" fill="#5c7a35"/>
+  <!-- Pendant lights -->
+  <line x1="250" y1="0" x2="250" y2="100" stroke="#3e2d21" stroke-width="2"/>
+  <ellipse cx="250" cy="110" rx="40" ry="25" fill="#f5deb3" opacity="0.8" stroke="#e8d5a0" stroke-width="1"/>
+  <ellipse cx="250" cy="120" rx="20" ry="10" fill="#fff8dc" opacity="0.6"/>
+  <line x1="700" y1="0" x2="700" y2="100" stroke="#3e2d21" stroke-width="2"/>
+  <ellipse cx="700" cy="110" rx="40" ry="25" fill="#f5deb3" opacity="0.8" stroke="#e8d5a0" stroke-width="1"/>
+  <ellipse cx="700" cy="120" rx="20" ry="10" fill="#fff8dc" opacity="0.6"/>
+  <!-- Waiting chairs -->
+  <rect x="670" y="340" width="70" height="50" rx="4" fill="#e07b4c" opacity="0.3"/>
+  <rect x="670" y="340" width="70" height="12" rx="4" fill="#e07b4c" opacity="0.5"/>
+  <rect x="770" y="340" width="70" height="50" rx="4" fill="#e07b4c" opacity="0.3"/>
+  <rect x="770" y="340" width="70" height="12" rx="4" fill="#e07b4c" opacity="0.5"/>
+  <!-- Side table between chairs -->
+  <rect x="750" y="360" width="14" height="30" rx="2" fill="#c9a87c"/>
+  <rect x="745" y="355" width="24" height="8" rx="3" fill="#d4b896"/>
+  <!-- Floor plant -->
+  <rect x="900" y="290" width="40" height="50" rx="5" fill="#8B6914"/>
+  <circle cx="920" cy="275" r="30" fill="#4a7a2e"/>
+  <circle cx="908" cy="280" r="22" fill="#5c8a3c"/>
+  <circle cx="932" cy="278" r="20" fill="#3d6b24"/>
+  <!-- Decorative frame on wall -->
+  <rect x="610" y="150" width="160" height="100" rx="4" fill="#fdf2e4" stroke="#e8d5b8" stroke-width="2"/>
+  <!-- Caption -->
+  <text x="500" y="510" text-anchor="middle" font-size="18" fill="#4a3728" font-weight="700">🛎️ 前台接待区</text>
+  <text x="500" y="535" text-anchor="middle" font-size="13" fill="#8b7355">温馨明亮的接待空间，为每位家长和毛孩子提供贴心服务</text>
+</svg>
+</div>
+
+<div class="env-slide">
+<svg viewBox="0 0 1000 560" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="width:100%;height:auto;display:block">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f8f9fa"/><stop offset="100%" stop-color="#e8ecf1"/></linearGradient>
+    <linearGradient id="tile" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f0f2f5"/><stop offset="100%" stop-color="#dcdfe3"/></linearGradient>
+  </defs>
+  <rect width="1000" height="560" fill="url(#bg2)"/>
+  <!-- Tile floor -->
+  <rect x="0" y="400" width="1000" height="160" fill="url(#tile)"/>
+  <line x1="0" y1="430" x2="1000" y2="430" stroke="#cdd1d6" stroke-width="0.5"/>
+  <line x1="0" y1="460" x2="1000" y2="460" stroke="#cdd1d6" stroke-width="0.5"/>
+  <line x1="0" y1="490" x2="1000" y2="490" stroke="#cdd1d6" stroke-width="0.5"/>
+  <line x1="0" y1="520" x2="1000" y2="520" stroke="#cdd1d6" stroke-width="0.5"/>
+  <line x1="200" y1="400" x2="200" y2="560" stroke="#cdd1d6" stroke-width="0.5"/>
+  <line x1="400" y1="400" x2="400" y2="560" stroke="#cdd1d6" stroke-width="0.5"/>
+  <line x1="600" y1="400" x2="600" y2="560" stroke="#cdd1d6" stroke-width="0.5"/>
+  <line x1="800" y1="400" x2="800" y2="560" stroke="#cdd1d6" stroke-width="0.5"/>
+  <!-- Back wall -->
+  <rect x="0" y="40" width="1000" height="360" fill="#f4f6f8"/>
+  <!-- Upper cabinets -->
+  <rect x="30" y="60" width="300" height="120" rx="6" fill="white" stroke="#e0e3e7" stroke-width="1"/>
+  <rect x="40" y="80" width="130" height="80" rx="3" fill="#e8ecf1"/>
+  <rect x="180" y="80" width="130" height="80" rx="3" fill="#e8ecf1"/>
+  <!-- Product shelves -->
+  <rect x="350" y="60" width="620" height="80" rx="6" fill="white" stroke="#e0e3e7" stroke-width="1"/>
+  <rect x="370" y="70" width="50" height="55" rx="4" fill="#fadbd8"/>
+  <rect x="430" y="70" width="50" height="55" rx="4" fill="#fdebd0"/>
+  <rect x="490" y="70" width="50" height="55" rx="4" fill="#d5f5e3"/>
+  <rect x="550" y="70" width="50" height="55" rx="4" fill="#d6eaf8"/>
+  <rect x="610" y="70" width="50" height="55" rx="4" fill="#fadbd8"/>
+  <rect x="670" y="70" width="50" height="55" rx="4" fill="#fdebd0"/>
+  <rect x="730" y="70" width="50" height="55" rx="4" fill="#e8daef"/>
+  <rect x="790" y="70" width="50" height="55" rx="4" fill="#d5f5e3"/>
+  <rect x="850" y="70" width="50" height="55" rx="4" fill="#fdebd0"/>
+  <rect x="910" y="70" width="45" height="55" rx="4" fill="#d6eaf8"/>
+  <!-- Grooming station 1 -->
+  <rect x="60" y="220" width="260" height="180" rx="10" fill="white" stroke="#e0e3e7" stroke-width="1.5"/>
+  <rect x="80" y="240" width="220" height="100" rx="6" fill="#f0f3f5"/>
+  <!-- Stainless table -->
+  <rect x="90" y="250" width="200" height="12" rx="4" fill="#c8ccd0"/>
+  <rect x="90" y="250" width="200" height="5" rx="4" fill="#e0e3e7"/>
+  <!-- Arm/grooming loop -->
+  <line x1="150" y1="210" x2="150" y2="250" stroke="#888" stroke-width="3"/>
+  <circle cx="150" cy="208" r="8" fill="none" stroke="#888" stroke-width="2"/>
+  <!-- Tools on wall behind -->
+  <rect x="80" y="198" width="20" height="40" rx="2" fill="#d5d8dc"/>
+  <rect x="105" y="195" width="15" height="45" rx="2" fill="#d5d8dc"/>
+  <rect x="125" y="200" width="12" height="38" rx="2" fill="#d5d8dc"/>
+  <!-- Grooming station 2 -->
+  <rect x="370" y="220" width="260" height="180" rx="10" fill="white" stroke="#e0e3e7" stroke-width="1.5"/>
+  <rect x="390" y="240" width="220" height="100" rx="6" fill="#f0f3f5"/>
+  <rect x="400" y="250" width="200" height="12" rx="4" fill="#c8ccd0"/>
+  <rect x="400" y="250" width="200" height="5" rx="4" fill="#e0e3e7"/>
+  <line x1="500" y1="210" x2="500" y2="250" stroke="#888" stroke-width="3"/>
+  <circle cx="500" cy="208" r="8" fill="none" stroke="#888" stroke-width="2"/>
+  <!-- Bathtub station -->
+  <rect x="680" y="220" width="280" height="180" rx="10" fill="white" stroke="#e0e3e7" stroke-width="1.5"/>
+  <ellipse cx="820" cy="310" rx="100" ry="50" fill="#e8f0f8" stroke="#c8d6e5" stroke-width="2"/>
+  <ellipse cx="820" cy="305" rx="85" ry="38" fill="#dce8f5"/>
+  <!-- Water -->
+  <ellipse cx="820" cy="290" rx="60" ry="25" fill="#a8d8ea" opacity="0.5"/>
+  <!-- Faucet -->
+  <rect x="820" y="225" width="8" height="40" rx="4" fill="#c8ccd0"/>
+  <rect x="810" y="220" width="28" height="12" rx="6" fill="#c8ccd0"/>
+  <!-- Hanging light -->
+  <line x1="820" y1="0" x2="820" y2="160" stroke="#3e2d21" stroke-width="1.5"/>
+  <rect x="800" y="160" width="40" height="20" rx="4" fill="#f5f0e0"/>
+  <!-- Caption -->
+  <text x="500" y="510" text-anchor="middle" font-size="18" fill="#4a3728" font-weight="700">🛁 洗护美容区</text>
+  <text x="500" y="535" text-anchor="middle" font-size="13" fill="#8b7355">专业级洗护设备，一宠一巾严格消毒，安全卫生有保障</text>
+</svg>
+</div>
+
+<div class="env-slide">
+<svg viewBox="0 0 1000 560" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="width:100%;height:auto;display:block">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#fdf8f3"/><stop offset="100%" stop-color="#fce4d6"/></linearGradient>
+    <linearGradient id="warmFloor" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#c9a87c"/><stop offset="100%" stop-color="#b8956a"/></linearGradient>
+  </defs>
+  <rect width="1000" height="560" fill="url(#bg3)"/>
+  <!-- Wooden floor -->
+  <rect x="0" y="380" width="1000" height="180" fill="url(#warmFloor)"/>
+  <line x1="0" y1="410" x2="1000" y2="410" stroke="#a8855c" stroke-width="0.8"/>
+  <line x1="0" y1="450" x2="1000" y2="450" stroke="#a8855c" stroke-width="0.8"/>
+  <line x1="0" y1="500" x2="1000" y2="500" stroke="#a8855c" stroke-width="0.8"/>
+  <!-- Wall -->
+  <rect x="0" y="40" width="1000" height="340" fill="#fef9f4"/>
+  <!-- Large glass window showing grooming area -->
+  <rect x="520" y="80" width="450" height="280" rx="8" fill="#e8f4f8" stroke="#d4a853" stroke-width="3"/>
+  <rect x="525" y="85" width="440" height="270" rx="6" fill="#dceaf0" opacity="0.5"/>
+  <!-- Through the glass - silhouette of grooming activity -->
+  <rect x="600" y="220" width="120" height="80" rx="4" fill="#c8dce6" opacity="0.6"/>
+  <circle cx="660" cy="180" r="25" fill="#c8dce6" opacity="0.4"/>
+  <rect x="780" y="200" width="100" height="100" rx="6" fill="#c8dce6" opacity="0.5"/>
+  <!-- Sofa -->
+  <rect x="60" y="310" width="320" height="90" rx="14" fill="#d4956b"/>
+  <rect x="60" y="310" width="320" height="35" rx="14" fill="#e8a87c"/>
+  <rect x="70" y="285" width="300" height="30" rx="10" fill="#d4956b"/>
+  <!-- Cushions -->
+  <ellipse cx="110" cy="335" rx="30" ry="22" fill="#f5c6a0"/>
+  <ellipse cx="250" cy="340" rx="25" ry="18" fill="#f0bd96"/>
+  <!-- Coffee table -->
+  <rect x="130" y="390" width="140" height="8" rx="4" fill="#d4b896"/>
+  <rect x="150" y="398" width="8" height="40" rx="2" fill="#b8956a"/>
+  <rect x="250" y="398" width="8" height="40" rx="2" fill="#b8956a"/>
+  <!-- Tea set on table -->
+  <rect x="180" y="378" width="16" height="14" rx="4" fill="#e07b4c"/>
+  <rect x="205" y="380" width="12" height="10" rx="3" fill="#f0a06a"/>
+  <!-- Side table with lamp -->
+  <rect x="400" y="340" width="50" height="50" rx="5" fill="#d4b896"/>
+  <rect x="415" y="300" width="20" height="40" rx="3" fill="#c9a87c"/>
+  <ellipse cx="425" cy="295" rx="25" ry="15" fill="#fdebd0"/>
+  <ellipse cx="425" cy="295" rx="15" ry="10" fill="#fff8dc"/>
+  <!-- Bookshelf -->
+  <rect x="40" y="140" width="120" height="150" rx="6" fill="#c9a87c"/>
+  <rect x="50" y="150" width="100" height="15" rx="2" fill="#b8956a"/>
+  <rect x="50" y="175" width="100" height="15" rx="2" fill="#b8956a"/>
+  <rect x="50" y="200" width="100" height="15" rx="2" fill="#b8956a"/>
+  <rect x="50" y="225" width="45" height="18" rx="2" fill="#e07b4c" opacity="0.3"/>
+  <rect x="105" y="225" width="45" height="18" rx="2" fill="#e07b4c" opacity="0.2"/>
+  <!-- Books on shelf -->
+  <rect x="55" y="152" width="8" height="12" rx="1" fill="#5a8fb5"/>
+  <rect x="67" y="155" width="6" height="10" rx="1" fill="#e07b4c"/>
+  <rect x="77" y="153" width="10" height="11" rx="1" fill="#7a9e4f"/>
+  <rect x="55" y="177" width="7" height="12" rx="1" fill="#f0a06a"/>
+  <rect x="66" y="178" width="9" height="10" rx="1" fill="#8e6fb5"/>
+  <rect x="79" y="176" width="6" height="13" rx="1" fill="#5a8fb5"/>
+  <!-- Pet play area rug -->
+  <ellipse cx="640" cy="420" rx="80" ry="40" fill="#f5e1c8" opacity="0.6"/>
+  <ellipse cx="640" cy="420" rx="60" ry="28" fill="#fdebd0" opacity="0.5"/>
+  <!-- Toy -->
+  <circle cx="680" cy="410" r="12" fill="#e07b4c" opacity="0.5"/>
+  <!-- Pendant light -->
+  <line x1="300" y1="0" x2="300" y2="80" stroke="#3e2d21" stroke-width="2"/>
+  <ellipse cx="300" cy="90" rx="50" ry="20" fill="#f5deb3" opacity="0.7" stroke="#e8d5a0" stroke-width="1"/>
+  <!-- Caption -->
+  <text x="500" y="510" text-anchor="middle" font-size="18" fill="#4a3728" font-weight="700">☕ 休息等待区</text>
+  <text x="500" y="535" text-anchor="middle" font-size="13" fill="#8b7355">舒适沙发茶歇空间，透过玻璃随时看到毛孩子的洗护过程</text>
+</svg>
+</div>
+
+</div><div class="env-dots" id="envDots"><button class="env-dot active" onclick="goToSlide(0)" aria-label="第1张"></button><button class="env-dot" onclick="goToSlide(1)" aria-label="第2张"></button><button class="env-dot" onclick="goToSlide(2)" aria-label="第3张"></button></div></div></div></section><section id="gallery"><div class="container"><div class="section-header"><span class="section-tag">📸 作品展示</span><h2>毛孩子们的焕然一新</h2><p>每一张都是我们用心服务的见证</p></div><div class="gallery-grid"><div class="gallery-item"><img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=500&h=350&fit=crop&auto=format" alt="泰迪精致造型" loading="lazy"><div class="gallery-overlay">泰迪精致造型</div></div><div class="gallery-item"><img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=500&h=350&fit=crop&auto=format" alt="猫咪SPA护理" loading="lazy"><div class="gallery-overlay">猫咪SPA护理</div></div><div class="gallery-item"><img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=500&h=350&fit=crop&auto=format" alt="比熊精致美容" loading="lazy"><div class="gallery-overlay">比熊精致美容</div></div><div class="gallery-item"><img src="https://images.unsplash.com/photo-1552053831-71594a27632d?w=500&h=350&fit=crop&auto=format" alt="金毛深层清洁" loading="lazy"><div class="gallery-overlay">金毛深层清洁</div></div></div></div></section>
+<section id="testimonials"><div class="container"><div class="section-header"><span class="section-tag">💬 客户评价</span><h2>听听家长们怎么说</h2><p>来自毛孩子家长的真诚反馈</p></div><div class="testimonials-grid"><div class="testimonial-card"><div class="testimonial-stars">⭐⭐⭐⭐⭐</div><p class="testimonial-text">我家泰迪每次来都特别开心，美容师小姐姐超温柔！洗完回来毛特别滑，香味也能保持好久。已经推荐给所有养狗的朋友了～</p><div class="testimonial-author"><div class="author-avatar">🐕</div><div><div class="author-name">小美妈妈</div><div class="author-pet">泰迪 · 3岁</div></div></div></div><div class="testimonial-card"><div class="testimonial-stars">⭐⭐⭐⭐⭐</div><p class="testimonial-text">原来我家猫特别抗拒洗澡，来了这里之后居然不闹了！店员很有耐心，手法专业，用的小零食也很健康。强烈推荐猫咪家长！</p><div class="testimonial-author"><div class="author-avatar">🐱</div><div><div class="author-name">橘座大人</div><div class="author-pet">橘猫 · 2岁</div></div></div></div><div class="testimonial-card"><div class="testimonial-stars">⭐⭐⭐⭐⭐</div><p class="testimonial-text">接送服务太方便了！下班回家毛孩子已经在门口等我。Spa做完毛色亮了一个度，真心觉得物超所值。</p><div class="testimonial-author"><div class="author-avatar">🐩</div><div><div class="author-name">卷毛爸比</div><div class="author-pet">比熊 · 4岁</div></div></div></div></div></div></section>
+<section id="contact" class="contact-section"><div class="container"><div class="section-header"><span class="section-tag">📋 在线预约</span><h2>为毛孩子预约一次舒适体验</h2><p>填写信息，我们会在30分钟内与您确认</p></div><div class="contact-grid"><div class="contact-form"><div class="form-row"><div class="form-group"><label>您的姓名</label><input type="text" placeholder="请输入姓名"></div><div class="form-group"><label>手机号码</label><input type="tel" placeholder="请输入手机号"></div></div><div class="form-row"><div class="form-group"><label>宠物类型</label><select><option>请选择</option><option>🐶 狗狗</option><option>🐱 猫咪</option><option>🐰 其他</option></select></div><div class="form-group"><label>服务项目</label><select><option>请选择</option><option>基础洗护</option><option>精致美容</option><option>SPA护理</option><option>口腔护理</option></select></div></div><div class="form-group"><label>期望日期</label><input type="date"></div><div class="form-group"><label>备注</label><textarea rows="3" placeholder="如有特殊要求请在此说明..."></textarea></div><button class="btn-submit">提交预约</button></div><div class="contact-info"><h3>📍 联系我们</h3><p>有任何问题欢迎随时咨询，我们期待为您和毛孩子服务！</p><div class="info-item"><div class="info-icon">📍</div><div><h4>门店地址</h4><span>上海市浦东新区毛茸茸路88号</span></div></div><div class="info-item"><div class="info-icon">📞</div><div><h4>联系电话</h4><span>021-8888-6666</span></div></div><div class="info-item"><div class="info-icon">📱</div><div><h4>微信客服</h4><span>maorongrong_pet</span></div></div><div class="hours-table"><h4 style="margin-bottom:10px">🕐 营业时间</h4><div class="hours-row"><span>周一至周五</span><span>09:00 - 20:00</span></div><div class="hours-row"><span>周六至周日</span><span>08:00 - 21:00</span></div><div class="hours-row"><span>法定节假日</span><span>正常营业</span></div></div></div></div></div></section>
+<footer><div class="footer-grid"><div class="footer-brand"><h3>🐾 毛茸茸宠物洗护馆</h3><p>成立于2018年，致力于为每一只宠物提供专业、温柔、贴心的洗护服务。我们相信，每一只毛孩子都值得最好的呵护。</p><div class="footer-social"><a href="#" title="微信">💬</a><a href="#" title="微博">📢</a><a href="#" title="小红书">📕</a><a href="#" title="抖音">🎵</a></div></div><div class="footer-col"><h4>快速导航</h4><ul><li><a href="#about">关于我们</a></li><li><a href="#services">服务项目</a></li><li><a href="#pricing">价目表</a></li><li><a href="#gallery">作品展示</a></li></ul></div><div class="footer-col"><h4>热门服务</h4><ul><li><a href="#">基础洗护</a></li><li><a href="#">精致美容</a></li><li><a href="#">SPA护理</a></li><li><a href="#">上门接送</a></li></ul></div><div class="footer-col"><h4>联系方式</h4><ul><li>📍 上海市浦东新区</li><li>📞 021-8888-6666</li><li>📧 hello@maorongrong.com</li><li>🕐 09:00 - 20:00</li></ul></div></div><div class="footer-bottom">&copy; 2024 毛茸茸宠物洗护馆 · 用心呵护每一只毛孩子 🐾</div></footer>
+<script>function toggleMenu(){document.getElementById('navLinks').classList.toggle('active')}function closeMenu(){document.getElementById('navLinks').classList.remove('active')}window.addEventListener('scroll',()=>{const n=document.querySelector('nav');n.style.boxShadow=window.scrollY>50?'0 2px 25px rgba(0,0,0,.1)':'0 2px 20px rgba(0,0,0,.06)'})
+/* ===== 店内环境轮播 ===== */
+let envIndex=0
+const envSlides=document.getElementById('envSlides')
+const totalSlides=3
+function moveSlide(dir){envIndex=(envIndex+dir+totalSlides)%totalSlides;updateCarousel()}
+function goToSlide(n){envIndex=n;updateCarousel()}
+function updateCarousel(){envSlides.style.transform='translateX(-'+(envIndex*100)+'%)';document.querySelectorAll('.env-dot').forEach((d,i)=>d.classList.toggle('active',i===envIndex))}
+let envTimer=setInterval(()=>moveSlide(1),4000)
+const carousel=document.getElementById('envCarousel')
+carousel.addEventListener('mouseenter',()=>clearInterval(envTimer))
+carousel.addEventListener('mouseleave',()=>{envTimer=setInterval(()=>moveSlide(1),4000)})</script>
+</body>
+</html>
